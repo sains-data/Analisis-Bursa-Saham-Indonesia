@@ -1,0 +1,65 @@
+# hadoop_pipeline_project/docker-compose.yml
+version: '3.8'
+
+services:
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
+    restart: always
+    ports:
+      - "9870:9870"  # NameNode Web UI
+      - "9000:9000"  # HDFS IPC
+    volumes:
+      - hadoop_namenode_data:/hadoop/dfs/name
+    environment:
+      - CLUSTER_NAME=test
+    env_file:
+      - ./hadoop.env
+
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode
+    restart: always
+    volumes:
+      - hadoop_datanode_data:/hadoop/dfs/data
+    environment:
+      - SERVICE_PRECONDITION=namenode:9870
+    env_file:
+      - ./hadoop.env
+    depends_on:
+      - namenode
+
+  spark-master:
+    image: bde2020/spark-master:3.3.0-hadoop3.3 # <-- UPDATED TAG
+    container_name: spark-master
+    ports:
+      - "8080:8080"  # Spark Master Web UI
+      - "7077:7077"  # Spark Master RPC
+    volumes:
+      - ./scripts:/opt/scripts
+      - ./data_local:/opt/data_local
+      - ./spark_logs:/opt/spark-events # Optional: For Spark history server
+    environment:
+      - INIT_DAEMON_STEP=setup_spark_history_server # Optional
+      # - SPARK_MASTER_OPTS=-Dspark.eventLog.enabled=true -Dspark.eventLog.dir=/opt/spark-events # Optional
+
+  spark-worker:
+    image: bde2020/spark-worker:3.3.0-hadoop3.3 # <-- UPDATED TAG
+    container_name: spark-worker
+    depends_on:
+      - spark-master
+    ports:
+      - "8081:8081" # Spark Worker Web UI
+    environment:
+      - "SPARK_MASTER=spark://spark-master:7077"
+    volumes:
+      - ./scripts:/opt/scripts
+      - ./data_local:/opt/data_local
+
+volumes:
+  hadoop_namenode_data:
+  hadoop_datanode_data:
+
+networks:
+  default:
+    name: hadoop_network
