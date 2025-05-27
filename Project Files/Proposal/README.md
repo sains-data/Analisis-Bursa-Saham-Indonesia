@@ -45,6 +45,7 @@ Pipeline data berjalan secara batch dan otomatis:
 
 📁 Struktur Folder:
 
+```
 /opt/bigdata/
 ├── data/bronze/
 ├── data/silver/
@@ -53,7 +54,7 @@ Pipeline data berjalan secara batch dan otomatis:
 ├── ingestion/
 ├── hive/
 └── logs/
-
+```
 
 ---
 
