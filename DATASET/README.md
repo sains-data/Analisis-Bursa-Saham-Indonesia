@@ -54,3 +54,5 @@ Dataset ini berisi data historis perdagangan saham di **Bursa Efek Indonesia (BE
 
 ---
 
+📎 **Link dataset:**  
+👉 [Indonesia Stock Exchange (IDX) - Historical Price on Kaggle](https://www.kaggle.com/datasets/eren2222/indonesia-stock-exchange-idx-historical-price)
