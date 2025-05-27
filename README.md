@@ -13,3 +13,13 @@ Proyek bertujuan untuk membangun arsitektur Big Data berbasis Hadoop (HDFS, Hive
 - 🟡 **Gold Layer**: Penyajian data siap analisis melalui Hive SQL dan visualisasi dengan Apache Superset.
 
 Tujuan akhir dari sistem ini adalah mendukung analisis historis data saham dan menyajikan informasi secara visual guna membantu pengambilan keputusan di pasar modal.
+
+---
+
+## 👥 Tim Proyek
+
+Kelompok 14 – Sains Data ITERA  
+- Kiwit Novitasari  
+- Rayan Koemi Karuby  
+- Safitri  
+- Amalia Melani Putri  
