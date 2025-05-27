@@ -66,14 +66,6 @@ Pipeline data berjalan secara batch dan otomatis:
 
 ---
 
-## 📂 Dataset
-
-> Dataset: [IDX Stock Summary 2020–2024](https://www.kaggle.com/)
-- Kode Saham, Nama Perusahaan, Harga Buka/Tutup, Volume, dsb.
-- Format akhir: Parquet / ORC
-
----
-
 ## 🧪 Pengujian
 
 ✅ Pengambilan data  
